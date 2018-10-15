@@ -28,7 +28,7 @@
     }],
     "post-processors": [{
         "type": "docker-tag",
-        "repository": "statgen-tools-{{user `build`}}",
-        "tag": "test"
+        "repository": "statgen/statgen-tools",
+        "tag": "{{user `build`}}"
     }]
 }
