@@ -1,13 +1,14 @@
 {
     "variables": {
         "zone": "",
-        "project_id": ""
+        "project_id": "",
+        "build": ""
     },
     "builders": [{
         "type": "googlecompute",
         "project_id": "{{user `project_id`}}",
         "zone": "{{user `zone`}}",
-        "image_name": "statgen-tools-test",
+        "image_name": "statgen-tools-{{user `build`}}",
         "image_description": "A set of common tools used at University of Michigan Center for Statistical Genetics",
         "machine_type": "n1-standard-4",
         "source_image": "ubuntu-1604-xenial-v20181004",
@@ -26,7 +27,7 @@
     }],
     "post-processors": [{
         "type": "docker-tag",
-        "repository": "statgen-tools",
+        "repository": "statgen-tools-{{user `build`}}",
         "tag": "test"
     }]
 }
