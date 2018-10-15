@@ -14,10 +14,19 @@
         "source_image_family": "ubuntu-16.04-lts",
         "disk_size": "100",
         "disk_type": "pd-standard",
-        "ssh_username": "statgen"
+        "ssh_username": "root"
+    },{
+        "type": "docker",
+        "image": "ubuntu:16.04",
+        "commit": "true"
     }],
     "provisioners": [{
         "type": "shell",
         "script": "setup.sh"
+    }],
+    "post-processors": [{
+        "type": "docker-tag",
+        "repository": "statgen-tools",
+        "tag": "test"
     }]
 }
