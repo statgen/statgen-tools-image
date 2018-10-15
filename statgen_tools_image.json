@@ -7,12 +7,12 @@
         "type": "googlecompute",
         "project_id": "{{user `project_id`}}",
         "zone": "{{user `zone`}}",
-        "image_name": "statgen-base-image-test",
-        "image_description": "Base image for UM Statgen",
+        "image_name": "statgen-tools-test",
+        "image_description": "A set of common tools used at University of Michigan Center for Statistical Genetics",
         "machine_type": "n1-standard-4",
         "source_image": "ubuntu-1604-xenial-v20181004",
         "source_image_family": "ubuntu-16.04-lts",
-        "disk_size": "100",
+        "disk_size": "50",
         "disk_type": "pd-standard",
         "ssh_username": "root"
     },{
