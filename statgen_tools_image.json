@@ -1,14 +1,16 @@
 {
     "variables": {
-        "zone": "",
+        "aws_access_key": "",
+        "aws_secret_key": "",
+        "build_tag": "",
         "project_id": "",
-        "build": ""
+        "zone": ""
     },
     "builders": [{
         "type": "googlecompute",
         "project_id": "{{user `project_id`}}",
         "zone": "{{user `zone`}}",
-        "image_name": "statgen-tools-{{user `build`}}",
+        "image_name": "statgen-tools-{{user `build_tag`}}",
         "image_description": "A set of common tools used at University of Michigan Center for Statistical Genetics",
         "image_family": "statgen-tools",
         "machine_type": "n1-standard-4",
@@ -21,14 +23,39 @@
         "type": "docker",
         "image": "ubuntu:16.04",
         "commit": "true"
+    },{
+        "type": "amazon-ebs",
+        "access_key": "{{user `aws_access_key`}}",
+        "secret_key": "{{user `aws_secret_key`}}",
+        "region": "us-east-2",
+        "ami_name": "statgen-tools-{{user `build_tag`}}",
+        "ami_description": "A set of common tools used at University of Michigan Center for Statistical Genetics",
+        "encrypt_boot": true,
+        "source_ami_filter": {
+            "filters": {
+                "virtualization-type": "hvm",
+                "name": "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*",
+                "root-device-type": "ebs"
+            },
+            "owners": ["099720109477"],
+            "most_recent": true
+        },
+        "instance_type": "t2.xlarge",
+        "ssh_username": "ubuntu"
     }],
     "provisioners": [{
         "type": "shell",
-        "script": "setup.sh"
+        "script": "setup.sh",
+        "override": {
+            "amazon-ebs": {
+                "execute_command": "sudo -S sh -c '{{ .Vars }} {{ .Path }}'"
+            }
+        }
     }],
     "post-processors": [{
         "type": "docker-tag",
+        "only": ["docker"],
         "repository": "statgen/statgen-tools",
-        "tag": "{{user `build`}}"
+        "tag": "{{user `build_tag`}}"
     }]
 }
