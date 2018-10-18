@@ -1,0 +1,6 @@
+{
+    "aws_region": "us-east-1",
+    "build_tag": "test",
+    "gcp_zone": "us-central1-a",
+    "project_id": "encore-topmed"
+}

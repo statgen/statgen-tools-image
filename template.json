@@ -2,14 +2,16 @@
     "variables": {
         "aws_access_key": "",
         "aws_secret_key": "",
+        "aws_region": "",
         "build_tag": "",
         "project_id": "",
-        "zone": ""
+        "gcp_zone": ""
     },
+    "sensitive-variables": ["aws_access_key", "aws_secret_key"],
     "builders": [{
         "type": "googlecompute",
         "project_id": "{{user `project_id`}}",
-        "zone": "{{user `zone`}}",
+        "zone": "{{user `gcp_zone`}}",
         "image_name": "statgen-tools-{{user `build_tag`}}",
         "image_description": "A set of common tools used at University of Michigan Center for Statistical Genetics",
         "image_family": "statgen-tools",
@@ -27,7 +29,7 @@
         "type": "amazon-ebs",
         "access_key": "{{user `aws_access_key`}}",
         "secret_key": "{{user `aws_secret_key`}}",
-        "region": "us-east-2",
+        "region": "{{user `aws_region`}}",
         "ami_name": "statgen-tools-{{user `build_tag`}}",
         "ami_description": "A set of common tools used at University of Michigan Center for Statistical Genetics",
         "encrypt_boot": true,
@@ -45,7 +47,7 @@
     }],
     "provisioners": [{
         "type": "shell",
-        "script": "setup.sh",
+        "script": "scripts/setup.sh",
         "override": {
             "amazon-ebs": {
                 "execute_command": "sudo -S sh -c '{{ .Vars }} {{ .Path }}'"
