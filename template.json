@@ -4,10 +4,12 @@
         "aws_secret_key": "",
         "aws_region": "",
         "build_tag": "",
+        "dh_username": "",
+        "dh_password": "",
         "project_id": "",
         "gcp_zone": ""
     },
-    "sensitive-variables": ["aws_access_key", "aws_secret_key"],
+    "sensitive-variables": ["aws_access_key", "aws_secret_key", "dh_username", "dh_password"],
     "builders": [{
         "type": "googlecompute",
         "project_id": "{{user `project_id`}}",
@@ -60,10 +62,19 @@
             "rm /home/*/.ssh/authorized_keys"
         ]
     }],
-    "post-processors": [{
-        "type": "docker-tag",
-        "only": ["docker"],
-        "repository": "statgen/statgen-tools",
-        "tag": "{{user `build_tag`}}"
-    }]
+    "post-processors": [
+        [
+            {
+                "type": "docker-tag",
+                "only": ["docker"],
+                "repository": "statgen/statgen-tools"
+            },{
+                "type": "docker-push",
+                "only": ["docker"],
+                "login": true,
+                "login_username": "{{user `dh_username`}}",
+                "login_password": "{{user `dh_password`}}"
+            }
+        ]
+    ]
 }
