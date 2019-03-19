@@ -3,7 +3,7 @@
 HTSLIB_RELEASE="1.9"
 SAMTOOLS_RELEASE="1.9"
 BCFTOOLS_RELEASE="1.9"
-FUSERA_RELEASE="v0.0.13"
+FUSERA_RELEASE="v0.0.16"
 
 install_htslib() {
     curl -L -o /tmp/htslib-$HTSLIB_RELEASE.tar.bz2 https://github.com/samtools/htslib/releases/download/1.9/htslib-$HTSLIB_RELEASE.tar.bz2
