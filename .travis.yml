@@ -1,14 +1,11 @@
+dist: xenial
+sudo: required
 language: minimal
 
 services: docker
 
 env:
   - VERSION=1.0
-
-addons:
-  apt:
-    packages:
-      - docker-ce
 
 before_script:
   - cd "$VERSION"
