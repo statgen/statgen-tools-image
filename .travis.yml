@@ -4,13 +4,17 @@ services: docker
 
 env:
   - VERSION=1.0
-  - DOCKER_BUILDKIT=1
+
+addons:
+  apt:
+    packages:
+      - docker-ce
 
 before_script:
   - cd "$VERSION"
 
 script:
-  - docker build --build-arg VERSION="v1.0.0" --build-arg FUSERA_RELEASE="v0.0.17" --build-arg SAMTOOLS_RELEASE="1.9" --build-arg BCFTOOLS_RELEASE="1.9" --build-arg HTSLIB_RELEASE="1.9" . --no-cache
+  - DOCKER_BUILDKIT=1 docker build --build-arg VERSION="v1.0.0" --build-arg FUSERA_RELEASE="v0.0.17" --build-arg SAMTOOLS_RELEASE="1.9" --build-arg BCFTOOLS_RELEASE="1.9" --build-arg HTSLIB_RELEASE="1.9" . --no-cache
 
 after_script:
   - docker images
