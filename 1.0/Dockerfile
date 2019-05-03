@@ -3,7 +3,7 @@ ARG SAMTOOLS_RELEASE
 
 LABEL description="Build container for Samtools"
 
-RUN apt update && apt install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     bzip2 \
     ca-certificates \
@@ -26,7 +26,7 @@ ARG BCFTOOLS_RELEASE
 
 LABEL description="Build container for BCFtools"
 
-RUN apt update && apt install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     bzip2 \
     ca-certificates \
@@ -48,7 +48,7 @@ ARG HTSLIB_RELEASE
 
 LABEL description="Build container for HTSlib"
 
-RUN apt update && apt install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     bzip2 \
     ca-certificates \
@@ -70,7 +70,7 @@ ARG FUSERA_RELEASE
 
 LABEL description="Build container for Fusera"
 
-RUN apt update && apt install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     curl
 
@@ -85,7 +85,7 @@ LABEL version=${VERSION}
 LABEL description="A pre-made machine image with a set of commonly used tools"
 LABEL maintainer="pleiness@umich.edu"
 
-RUN apt update && apt install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     bzip2 \
     liblzma5 \
     libncurses5 \
