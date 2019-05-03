@@ -3,10 +3,10 @@
 HTSLIB_RELEASE="1.9"
 SAMTOOLS_RELEASE="1.9"
 BCFTOOLS_RELEASE="1.9"
-FUSERA_RELEASE="v0.0.16"
+FUSERA_RELEASE="v0.0.17"
 
 install_htslib() {
-    curl -L -o /tmp/htslib-$HTSLIB_RELEASE.tar.bz2 https://github.com/samtools/htslib/releases/download/1.9/htslib-$HTSLIB_RELEASE.tar.bz2
+    curl -L -o /tmp/htslib-$HTSLIB_RELEASE.tar.bz2 https://github.com/samtools/htslib/releases/download/$HTSLIB_RELEASE/htslib-$HTSLIB_RELEASE.tar.bz2
     tar -xvjf /tmp/htslib-$HTSLIB_RELEASE.tar.bz2 -C /tmp
     cd /tmp/htslib-$HTSLIB_RELEASE/
     /tmp/htslib-$HTSLIB_RELEASE/./configure && cd ~
@@ -15,7 +15,7 @@ install_htslib() {
 }
 
 install_samtools() {
-    curl -L -o /tmp/samtools-$SAMTOOLS_RELEASE.tar.bz2 https://github.com/samtools/samtools/releases/download/1.9/samtools-$SAMTOOLS_RELEASE.tar.bz2
+    curl -L -o /tmp/samtools-$SAMTOOLS_RELEASE.tar.bz2 https://github.com/samtools/samtools/releases/download/$SAMTOOLS_RELEASE/samtools-$SAMTOOLS_RELEASE.tar.bz2
     tar -xvjf /tmp/samtools-$SAMTOOLS_RELEASE.tar.bz2 -C /tmp
     cd /tmp/samtools-$SAMTOOLS_RELEASE/
     /tmp/samtools-$SAMTOOLS_RELEASE/./configure && cd ~
@@ -24,7 +24,7 @@ install_samtools() {
 }
 
 install_bcftools() {
-    curl -L -o /tmp/bcftools-$BCFTOOLS_RELEASE.tar.bz2 https://github.com/samtools/bcftools/releases/download/1.9/bcftools-$BCFTOOLS_RELEASE.tar.bz2
+    curl -L -o /tmp/bcftools-$BCFTOOLS_RELEASE.tar.bz2 https://github.com/samtools/bcftools/releases/download/$BCFTOOLS_RELEASE/bcftools-$BCFTOOLS_RELEASE.tar.bz2
     tar -xvjf /tmp/bcftools-$BCFTOOLS_RELEASE.tar.bz2 -C /tmp
     cd /tmp/bcftools-$BCFTOOLS_RELEASE/
     /tmp/bcftools-$BCFTOOLS_RELEASE/./configure && cd ~

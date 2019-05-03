@@ -18,14 +18,14 @@
         "image_description": "A set of common tools used at University of Michigan Center for Statistical Genetics",
         "image_family": "statgen-tools",
         "machine_type": "n1-standard-4",
-        "source_image": "ubuntu-1604-xenial-v20181024",
-        "source_image_family": "ubuntu-16.04-lts",
+        "source_image": "ubuntu-1804-bionic-v20181114",
+        "source_image_family": "ubuntu-18.04-lts",
         "disk_size": "10",
-        "disk_type": "pd-standard",
+        "disk_type": "pd-ssd",
         "ssh_username": "root"
     },{
         "type": "docker",
-        "image": "ubuntu:16.04",
+        "image": "ubuntu:18.04",
         "commit": "true"
     },{
         "type": "amazon-ebs",
@@ -38,7 +38,7 @@
         "source_ami_filter": {
             "filters": {
                 "virtualization-type": "hvm",
-                "name": "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*",
+                "name": "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*",
                 "root-device-type": "ebs"
             },
             "owners": ["099720109477"],
