@@ -18,7 +18,7 @@
         "image_description": "A set of common tools used at University of Michigan Center for Statistical Genetics",
         "image_family": "statgen-tools",
         "machine_type": "n1-standard-4",
-        "source_image": "ubuntu-1804-bionic-v20181114",
+        "source_image": "ubuntu-1804-bionic-v20190628",
         "source_image_family": "ubuntu-18.04-lts",
         "disk_size": "10",
         "disk_type": "pd-ssd",

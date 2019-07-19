@@ -3,13 +3,13 @@
 HTSLIB_RELEASE="1.9"
 SAMTOOLS_RELEASE="1.9"
 BCFTOOLS_RELEASE="1.9"
-FUSERA_RELEASE="v0.0.17"
+FUSERA_RELEASE="v0.0.18"
 
 install_htslib() {
     curl -L -o /tmp/htslib-$HTSLIB_RELEASE.tar.bz2 https://github.com/samtools/htslib/releases/download/$HTSLIB_RELEASE/htslib-$HTSLIB_RELEASE.tar.bz2
     tar -xvjf /tmp/htslib-$HTSLIB_RELEASE.tar.bz2 -C /tmp
-    cd /tmp/htslib-$HTSLIB_RELEASE/
-    /tmp/htslib-$HTSLIB_RELEASE/./configure && cd ~
+    cd /tmp/htslib-$HTSLIB_RELEASE/ || exit
+    /tmp/htslib-$HTSLIB_RELEASE/./configure && cd ~ || exit
     make -j5 -C /tmp/htslib-$HTSLIB_RELEASE
     make install -C /tmp/htslib-$HTSLIB_RELEASE
 }
@@ -17,8 +17,8 @@ install_htslib() {
 install_samtools() {
     curl -L -o /tmp/samtools-$SAMTOOLS_RELEASE.tar.bz2 https://github.com/samtools/samtools/releases/download/$SAMTOOLS_RELEASE/samtools-$SAMTOOLS_RELEASE.tar.bz2
     tar -xvjf /tmp/samtools-$SAMTOOLS_RELEASE.tar.bz2 -C /tmp
-    cd /tmp/samtools-$SAMTOOLS_RELEASE/
-    /tmp/samtools-$SAMTOOLS_RELEASE/./configure && cd ~
+    cd /tmp/samtools-$SAMTOOLS_RELEASE/ || exit
+    /tmp/samtools-$SAMTOOLS_RELEASE/./configure && cd ~ || exit
     make -j5 -C /tmp/samtools-$SAMTOOLS_RELEASE
     make install -C /tmp/samtools-$SAMTOOLS_RELEASE
 }
@@ -26,8 +26,8 @@ install_samtools() {
 install_bcftools() {
     curl -L -o /tmp/bcftools-$BCFTOOLS_RELEASE.tar.bz2 https://github.com/samtools/bcftools/releases/download/$BCFTOOLS_RELEASE/bcftools-$BCFTOOLS_RELEASE.tar.bz2
     tar -xvjf /tmp/bcftools-$BCFTOOLS_RELEASE.tar.bz2 -C /tmp
-    cd /tmp/bcftools-$BCFTOOLS_RELEASE/
-    /tmp/bcftools-$BCFTOOLS_RELEASE/./configure && cd ~
+    cd /tmp/bcftools-$BCFTOOLS_RELEASE/ || exit
+    /tmp/bcftools-$BCFTOOLS_RELEASE/./configure && cd ~ || exit
     make -j5 -C /tmp/bcftools-$BCFTOOLS_RELEASE
     make install -C /tmp/bcftools-$BCFTOOLS_RELEASE
 }
@@ -44,6 +44,7 @@ setup() {
     echo "Waiting for Ubuntu to initialize..."
     sleep 30
 
+    export DEBIAN_FRONTEND=noninteractive
     apt-get update && apt-get upgrade -y
     apt-get install -y build-essential bzip2 curl fuse gzip libbz2-dev liblzma-dev libncurses5-dev xz-utils zlib1g-dev zstd
 }
