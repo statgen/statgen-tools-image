@@ -15,8 +15,8 @@
         "type": "googlecompute",
         "project_id": "{{user `project_id`}}",
         "zone": "{{user `gcp_zone`}}",
-        "image_name": "statgen-tools-{{user `build_tag`}}",
-        "image_description": "A set of common tools used at University of Michigan Center for Statistical Genetics",
+        "image_name": "statgen-tools-{{user `build_tag`}}-{{isotime \"20060102\"}}",
+        "image_description": "A set of common tools used at University of Michigan Center for Statistical Genetics. Built on {{isotime \"2006-01-02\"}}.",
         "image_family": "statgen-tools",
         "machine_type": "n1-standard-4",
         "source_image": "ubuntu-1804-bionic-v20190628",
@@ -33,8 +33,8 @@
         "access_key": "{{user `aws_access_key`}}",
         "secret_key": "{{user `aws_secret_key`}}",
         "region": "{{user `aws_region`}}",
-        "ami_name": "statgen-tools-{{user `build_tag`}}",
-        "ami_description": "A set of common tools used at University of Michigan Center for Statistical Genetics",
+        "ami_name": "statgen-tools-{{user `build_tag`}}-{{isotime \"20060102\"}}",
+        "ami_description": "A set of common tools used at University of Michigan Center for Statistical Genetics. Built on {{isotime \"2006-01-02\"}}.",
         "encrypt_boot": true,
         "source_ami_filter": {
             "filters": {

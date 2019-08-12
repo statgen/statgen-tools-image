@@ -1,5 +1,3 @@
-$(eval GIT_COMMIT = $(shell git rev-parse HEAD))
-
 AWS_ACCESS_KEY=123
 AWS_REGION=us-east-2
 AWS_SECRET_KEY=123
