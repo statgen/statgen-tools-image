@@ -1,13 +1,14 @@
 {
     "variables": {
         "aws_access_key": "",
-        "aws_secret_key": "",
         "aws_region": "",
+        "aws_secret_key": "",
         "build_tag": "",
-        "dh_username": "",
         "dh_password": "",
+        "dh_username": "",
+        "gcp_zone": "",
         "project_id": "",
-        "gcp_zone": ""
+        "script_path": ""
     },
     "sensitive-variables": ["aws_access_key", "aws_secret_key", "dh_username", "dh_password"],
     "builders": [{
@@ -49,7 +50,7 @@
     }],
     "provisioners": [{
         "type": "shell",
-        "script": "scripts/setup.sh",
+        "script": "{{user `script_path`}}",
         "override": {
             "amazon-ebs": {
                 "execute_command": "sudo -S sh -c '{{ .Vars }} {{ .Path }}'"
@@ -67,13 +68,8 @@
             {
                 "type": "docker-tag",
                 "only": ["docker"],
-                "repository": "statgen/statgen-tools"
-            },{
-                "type": "docker-push",
-                "only": ["docker"],
-                "login": true,
-                "login_username": "{{user `dh_username`}}",
-                "login_password": "{{user `dh_password`}}"
+                "repository": "statgen/statgen-tools",
+                "tag": "{{user `build_tag`}}"
             }
         ]
     ]

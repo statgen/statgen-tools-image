@@ -5,6 +5,9 @@ SAMTOOLS_RELEASE="1.9"
 BCFTOOLS_RELEASE="1.9"
 FUSERA_RELEASE="v0.0.18"
 
+TEMP_DEPENDENCIES=(build-essential libbz2-dev liblzma-dev libncurses5-dev zlib1g-dev)
+SOFTWARE=(bzip2 curl libcurl4-gnutls-dev liblzma5 libncurses5 tcsh fuse gzip wget xz-utils zlib1g zstd)
+
 install_htslib() {
     curl -L -o /tmp/htslib-$HTSLIB_RELEASE.tar.bz2 https://github.com/samtools/htslib/releases/download/$HTSLIB_RELEASE/htslib-$HTSLIB_RELEASE.tar.bz2
     tar -xvjf /tmp/htslib-$HTSLIB_RELEASE.tar.bz2 -C /tmp
@@ -45,8 +48,32 @@ setup() {
     sleep 30
 
     export DEBIAN_FRONTEND=noninteractive
+
     apt-get update && apt-get upgrade -y
-    apt-get install -y build-essential bzip2 curl fuse gzip libbz2-dev liblzma-dev libncurses5-dev xz-utils zlib1g-dev zstd
+
+    for package in "${TEMP_DEPENDENCIES[@]}"
+    do
+        apt-get install -y "$package"
+    done
+
+    for package in "${SOFTWARE[@]}"
+    do
+        apt-get install -y "$package"
+    done
+}
+
+cleanup() {
+    # Remove unused software packages
+    for package in "${TEMP_DEPENDENCIES[@]}"
+    do
+        apt-get purge -y "$package"
+    done
+
+    apt-get autoremove -y
+
+    # Remove APT lists
+    rm -rf /var/lib/apt/lists/*
+    rm -rf /tmp/*
 }
 
 setup
@@ -54,3 +81,4 @@ install_htslib
 install_samtools
 install_bcftools
 install_fusera
+cleanup
