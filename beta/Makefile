@@ -1,14 +1,14 @@
-AWS_ACCESS_KEY=123
+AWS_ACCESS_KEY=<your_aws_access_key>
 AWS_REGION=us-east-2
-AWS_SECRET_KEY=123
+AWS_SECRET_KEY=<your_aws_secret_key>
 
 BUILD_TAG=beta
 
-DOCKER_HUB_USER=test
-DOCKER_HUB_PASS=test
+DOCKER_HUB_USER=<your_dockerhub_user>
+DOCKER_HUB_PASS=<your_dockerhub_pass>
 
 GCP_ZONE=us-central1
-GCP_PROJECT_ID=test
+GCP_PROJECT_ID=<your_gcp_project_id>
 
 default = build
 
