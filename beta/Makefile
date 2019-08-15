@@ -47,7 +47,7 @@ build: scripts/setup.sh scripts/setup-minimal.sh variables variables-min ## Buil
 	packer build -var-file=variables-min.json template.json
 
 .PHONY: google-min
-google-min: scripts/setup-minimal.sh variables-min ## Builds only the Google Compute image defined in the Packer template
+google-min: scripts/setup-minimal.sh variables-min ## Builds only the Google Compute minimal image defined in the Packer template
 	packer build -only=googlecompute -var-file=variables-min.json template.json
 
 .PHONY: google
@@ -55,7 +55,7 @@ google: scripts/setup.sh variables ## Builds only the Google Compute image defin
 	packer build -only=googlecompute -var-file=variables.json template.json
 
 .PHONY: amazon-min
-amazon-min: scripts/setup-minimal.sh variables-min ## Builds only the Amazon EBS image defined in the Packer template
+amazon-min: scripts/setup-minimal.sh variables-min ## Builds only the Amazon EBS minimal image defined in the Packer template
 	packer build -only=amazon-ebs -var-file=variables-min.json template.json
 
 .PHONY: amazon
@@ -63,7 +63,7 @@ amazon: scripts/setup.sh variables ## Builds only the Amazon EBS image defined i
 	packer build -only=amazon-ebs -var-file=variables.json template.json
 
 .PHONY: docker-min
-docker-min: scripts/setup-minimal.sh variables-min ## Builds only the Docker image defined in the Packer template
+docker-min: scripts/setup-minimal.sh variables-min ## Builds only the Docker minimal image defined in the Packer template
 	packer build -only=docker -var-file=variables-min.json template.json
 
 .PHONY: docker
